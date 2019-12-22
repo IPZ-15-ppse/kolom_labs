@@ -17,7 +17,11 @@ window.fakeStorage = {
     return this._data = {};
   }
 };
-
+/**
+* Работа с локальным хранилищем
+*
+* Создает фейковое хранилище или получает локальное
+*/
 function LocalStorageManager() {
   this.bestScoreKey     = "bestScore";
   this.gameStateKey     = "gameState";
@@ -25,7 +29,11 @@ function LocalStorageManager() {
   var supported = this.localStorageSupported();
   this.storage = supported ? window.localStorage : window.fakeStorage;
 }
-
+/**
+* Проверка локальным хранилищем
+*
+* Проверяет работоспособность локального хранилища
+*/
 LocalStorageManager.prototype.localStorageSupported = function () {
   var testKey = "test";
 
@@ -39,7 +47,9 @@ LocalStorageManager.prototype.localStorageSupported = function () {
   }
 };
 
-// Best score getters/setters
+/** 
+* Best score getters/setters
+*/
 LocalStorageManager.prototype.getBestScore = function () {
   return this.storage.getItem(this.bestScoreKey) || 0;
 };
@@ -48,7 +58,9 @@ LocalStorageManager.prototype.setBestScore = function (score) {
   this.storage.setItem(this.bestScoreKey, score);
 };
 
-// Game state getters/setters and clearing
+/**
+* Game state getters/setters and clearing
+*/
 LocalStorageManager.prototype.getGameState = function () {
   var stateJSON = this.storage.getItem(this.gameStateKey);
   return stateJSON ? JSON.parse(stateJSON) : null;

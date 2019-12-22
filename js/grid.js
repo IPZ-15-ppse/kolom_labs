@@ -1,9 +1,19 @@
+/**
+* Работа с ячейкой
+*
+* Конструктор ячейки
+*
+* @param string $size размер
+* @param string $previousState предыдущее состояние
+*/
 function Grid(size, previousState) {
   this.size = size;
   this.cells = previousState ? this.fromState(previousState) : this.empty();
 }
 
-// Build a grid of the specified size
+/**
+* Build a grid of the specified size
+*/
 Grid.prototype.empty = function () {
   var cells = [];
 
@@ -17,7 +27,13 @@ Grid.prototype.empty = function () {
 
   return cells;
 };
-
+/**
+* Работа с ячейкой
+*
+* Изменение состояния ячейки
+*
+* @param string $state состояние
+*/
 Grid.prototype.fromState = function (state) {
   var cells = [];
 

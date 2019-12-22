@@ -1,3 +1,6 @@
+/**
+* Работа с клавиатурой
+*/
 function KeyboardInputManager() {
   this.events = {};
 
@@ -30,7 +33,11 @@ KeyboardInputManager.prototype.emit = function (event, data) {
     });
   }
 };
-
+/**
+* Работа кнопками
+*
+* Узнаем какая кнопка была нажата по кодам
+*/
 KeyboardInputManager.prototype.listen = function () {
   var self = this;
 
@@ -126,17 +133,29 @@ KeyboardInputManager.prototype.listen = function () {
     }
   });
 };
-
+/**
+* Работа с кнопками
+*
+* Перезапуск 
+*/
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
   this.emit("restart");
 };
-
+/**
+* Работа с кнопками
+*
+* Продолжение игры 
+*/
 KeyboardInputManager.prototype.keepPlaying = function (event) {
   event.preventDefault();
   this.emit("keepPlaying");
 };
-
+/**
+* Работа с кнопками
+*
+* Биндинг кнопок 
+*/
 KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
   var button = document.querySelector(selector);
   button.addEventListener("click", fn.bind(this));

@@ -1,3 +1,8 @@
+/**
+* Работа с полем игры
+*
+* Обновляем актуальные данные на поле
+*/
 function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
@@ -6,7 +11,14 @@ function HTMLActuator() {
 
   this.score = 0;
 }
-
+/**
+* Работа с полем игры
+*
+* Обновляет ячейку данными
+*
+* @param string $grid Ячейка
+* @param string $metadata Метаданные
+*/
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
 
@@ -35,7 +47,9 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
   });
 };
 
-// Continues the game (both restart and keep playing)
+/**
+* Continues the game (both restart and keep playing)
+*/
 HTMLActuator.prototype.continueGame = function () {
   this.clearMessage();
 };

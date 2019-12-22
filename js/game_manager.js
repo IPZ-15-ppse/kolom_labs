@@ -1,3 +1,13 @@
+/**
+* Работа с игрой в целом
+*
+* Задаем поле игры в целом
+*
+* @param string $size Размер поля
+* @param string $InputManager Клавиатура
+* @param string $Actuator Обновление экрана
+* @param string $StorageManager Хранилище
+*/
 function GameManager(size, InputManager, Actuator, StorageManager) {
   this.size           = size; // Size of the grid
   this.inputManager   = new InputManager;
@@ -13,25 +23,33 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.setup();
 }
 
-// Restart the game
+/**
+* Restart the game
+*/
 GameManager.prototype.restart = function () {
   this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
 };
 
-// Keep playing after winning (allows going over 2048)
+/**
+* Keep playing after winning (allows going over 2048)
+*/
 GameManager.prototype.keepPlaying = function () {
   this.keepPlaying = true;
   this.actuator.continueGame(); // Clear the game won/lost message
 };
 
-// Return true if the game is lost, or has won and the user hasn't kept playing
+/**
+* Return true if the game is lost, or has won and the user hasn't kept playing
+*/
 GameManager.prototype.isGameTerminated = function () {
   return this.over || (this.won && !this.keepPlaying);
 };
 
-// Set up the game
+/**
+* Set up the game
+*/
 GameManager.prototype.setup = function () {
   var previousState = this.storageManager.getGameState();
 
@@ -58,14 +76,18 @@ GameManager.prototype.setup = function () {
   this.actuate();
 };
 
-// Set up the initial tiles to start the game with
+/**
+* Set up the initial tiles to start the game with
+*/
 GameManager.prototype.addStartTiles = function () {
   for (var i = 0; i < this.startTiles; i++) {
     this.addRandomTile();
   }
 };
 
-// Adds a tile in a random position
+/**
+* Adds a tile in a random position
+*/
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
     var value = Math.random() < 0.9 ? 2 : 4;
@@ -75,7 +97,9 @@ GameManager.prototype.addRandomTile = function () {
   }
 };
 
-// Sends the updated grid to the actuator
+/**
+* Sends the updated grid to the actuator
+*/
 GameManager.prototype.actuate = function () {
   if (this.storageManager.getBestScore() < this.score) {
     this.storageManager.setBestScore(this.score);
@@ -98,7 +122,9 @@ GameManager.prototype.actuate = function () {
 
 };
 
-// Represent the current game as an object
+/**
+* Represent the current game as an object
+*/
 GameManager.prototype.serialize = function () {
   return {
     grid:        this.grid.serialize(),
@@ -109,7 +135,9 @@ GameManager.prototype.serialize = function () {
   };
 };
 
-// Save all tile positions and remove merger info
+/**
+* Save all tile positions and remove merger info
+*/
 GameManager.prototype.prepareTiles = function () {
   this.grid.eachCell(function (x, y, tile) {
     if (tile) {
@@ -119,14 +147,18 @@ GameManager.prototype.prepareTiles = function () {
   });
 };
 
-// Move a tile and its representation
+/**
+* Move a tile and its representation
+*/
 GameManager.prototype.moveTile = function (tile, cell) {
   this.grid.cells[tile.x][tile.y] = null;
   this.grid.cells[cell.x][cell.y] = tile;
   tile.updatePosition(cell);
 };
 
-// Move tiles on the grid in the specified direction
+/**
+* Move tiles on the grid in the specified direction
+*/
 GameManager.prototype.move = function (direction) {
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
@@ -190,7 +222,9 @@ GameManager.prototype.move = function (direction) {
   }
 };
 
-// Get the vector representing the chosen direction
+/**
+*  Get the vector representing the chosen direction
+*/
 GameManager.prototype.getVector = function (direction) {
   // Vectors representing tile movement
   var map = {
@@ -203,7 +237,9 @@ GameManager.prototype.getVector = function (direction) {
   return map[direction];
 };
 
-// Build a list of positions to traverse in the right order
+/**
+* Build a list of positions to traverse in the right order
+*/
 GameManager.prototype.buildTraversals = function (vector) {
   var traversals = { x: [], y: [] };
 
@@ -239,7 +275,9 @@ GameManager.prototype.movesAvailable = function () {
   return this.grid.cellsAvailable() || this.tileMatchesAvailable();
 };
 
-// Check for available matches between tiles (more expensive check)
+/**
+* Check for available matches between tiles (more expensive check)
+*/
 GameManager.prototype.tileMatchesAvailable = function () {
   var self = this;
 
