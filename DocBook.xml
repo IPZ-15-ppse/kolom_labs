@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
+    <info>
+        <title>2048 Game DocBook Support</title>
+    </info>
+    <sect1>
+        <title>Краткое описание игры</title>
+        <para><emphasis role="bold">Игра 2048</emphasis> – это увлекательная пошаговая
+            арифметическая головоломка. Она потренирует ваше математическое мышление и поможет
+            скоротать свободное время, проведя его с пользой. Играть в игру 2048 под силу не
+            каждому, для этого нужны хотя бы самые элементарные знания математики, а именно операции
+            сложения. Она не терпит поспешных решений, каждый ход нужно делать взвешенно, хорошо
+            подумав. Ведь единственное неверное движение может свести на нет даже самую успешную
+            игру.</para>
+        <para><emphasis role="bold">Цель игры</emphasis> – собрать на поле 4х4 плитку с числом 2048.
+            Но сделать это не так просто, как может показаться с первого взгляда. С каждым ходом, на
+            игровом поле, в незанятой ячейке, появляется плитка с числом 2 или 4. Сдвигая две плитки
+            с одинаковыми числами в сторону (влево, вправо, вниз или вверх), вы получаете одну с
+            числом равным их сумме. Например, при сдвиге двух плиток с числом 2, образуется одна с
+            числом 4 и так далее. Ни в коем случае нельзя двигать плитки без какой-либо цели, это не
+            приведет вас к победе, а только засорит игровое поле. И если на нем закончатся свободные
+            ячейки, а у вас не будет возможности сложить уже имеющиеся плитки, вы проиграли. Есть
+            много тактик и стратегий прохождения игры, используйте их или придумайте свою
+            собственную, сделайте все возможное, чтобы победить. Удачи!</para>
+    </sect1>
+    <sect1>
+        <title>Лицензия </title>
+        <para><emphasis role="bold">GNU General Public License</emphasis> — лицензия на свободное
+            программное обеспечение</para>
+    </sect1>
+    <sect1>
+        <title>Пример кода</title>
+        <para><emphasis role="bold">Создаём поле игры</emphasis>. Используем следующие аргументы: </para>
+        <para><emphasis role="bold">size</emphasis> - размер поля</para>
+        <para><emphasis role="bold">InputManager</emphasis> - клавиатура</para>
+        <para><emphasis role="bold">Actuator</emphasis> - обновление экрана</para>
+        <para><emphasis role="bold">StorageManager</emphasis> - хранилище данных</para>
+        <para/>
+        <para>function GameManager(size, InputManager, Actuator, StorageManager) {</para>
+        <para> this.size = size; </para>
+        <para> this.inputManager = new InputManager;</para>
+        <para> this.storageManager = new StorageManager;</para>
+        <para> this.actuator = new Actuator;</para>
+        <para> this.startTiles = 2;</para>
+        <para> this.inputManager.on("move", this.move.bind(this));</para>
+        <para> this.inputManager.on("restart", this.restart.bind(this));</para>
+        <para> this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));</para>
+        <para> this.setup();</para>
+        <para>}</para>
+    </sect1>
+</article>
