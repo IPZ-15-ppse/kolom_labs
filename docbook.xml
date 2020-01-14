@@ -1,64 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<book xmlns="http://docbook.org/ns/docbook"
-    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    version="5.0">
     <info>
-        <title>2048 Game</title>
+        <title>2048 Game DocBook Support</title>
     </info>
-    <part>
-        <chapter>
-            <title>Overview</title>
-            <para>A small clone of
-                [1024](https://play.google.com/store/apps/details?id=com.veewo.a1024), based on
-                [Saming's 2048](http://saming.fr/p/2048/) (also a clone).</para>
-            <sect1>
-                <title>License</title>
-                <para>2048 is licensed under the [MIT
-                    license.](https://github.com/gabrielecirulli/2048/blob/master/LICENSE.txt)</para>
-            </sect1>
-            <sect1>
-                <title>How to make changes</title>
-                <para> - To make changes, create a new branch based on `master` (do not create one
-                    from `gh-pages` unless strictly necessary) and make them there, then create a
-                    Pull Request to master. </para>
-                <para> `gh-pages` is different from master in that it contains sharing features,
-                    analytics and other things that have no direct bearing with the game. `master`
-                    is the "pure" version of the game.</para>
-                <para> - If you want to modify the CSS, please edit the SCSS files present in
-                    `style/`: `main.scss` and others. Don't edit the `main.css`, because it's
-                    supposed to be generated. </para>
-                <para> In order to compile your SCSS modifications, you need to use the `sass` gem
-                    (install it by running `gem install sass` once Ruby is installed). </para>
-                <para> To run SASS, simply use the following command: </para>
-                <para> `sass --unix-newlines --watch style/main.scss` </para>
-                <para> SASS will automatically recompile your css when changed.</para>
-                <para> - `Rakefile` contains some tasks that help during development. Feel free to
-                    add useful tasks if needed.</para>
-                <para> - Please use 2-space indentation when editing the JavaScript. A `.jshintrc`
-                    file is present, which will help your code to follow the guidelines if you
-                    install and run `jshint`.</para>
-                <para> - Please test your modification thoroughly before submitting your Pull
-                    Request.</para>
-            </sect1>
-            <sect1>
-                <title>Code samples</title>
-                <para>This is short example of css code</para>
-                <para>@import url(fonts/clear-sans.css);</para>
-                <para>html, body {</para>
-                <para>     margin: 0;</para>
-                <para>     padding: 0;</para>
-                <para>     background: #faf8ef;</para>
-                <para>     color: #776e65;</para>
-                <para>     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;</para>
-                <para>     font-size: 18px; }</para>
-                <para>And this is some use of js code in project.</para>
-                <para><code>function GameManager(size, InputManager, Actuator,
-                        StorageManager)</code></para>
-                <para>And this is another code block.</para>
-                <para><code>new GameManager(4, KeyboardInputManager, HTMLActuator,
-                        LocalStorageManager);</code></para>
-            </sect1>
-        </chapter>
-    </part>
-</book>
+    <sect1>
+        <title>Краткое описание игры</title>
+        <para><emphasis role="bold">Игра 2048</emphasis> – это увлекательная пошаговая
+            арифметическая головоломка. Она потренирует ваше математическое мышление и поможет
+            скоротать свободное время, проведя его с пользой. Играть в игру 2048 под силу не
+            каждому, для этого нужны хотя бы самые элементарные знания математики, а именно операции
+            сложения. Она не терпит поспешных решений, каждый ход нужно делать взвешенно, хорошо
+            подумав. Ведь единственное неверное движение может свести на нет даже самую успешную
+            игру.</para>
+        <para><emphasis role="bold">Цель игры</emphasis> – собрать на поле 4х4 плитку с числом 2048.
+            Но сделать это не так просто, как может показаться с первого взгляда. С каждым ходом, на
+            игровом поле, в незанятой ячейке, появляется плитка с числом 2 или 4. Сдвигая две плитки
+            с одинаковыми числами в сторону (влево, вправо, вниз или вверх), вы получаете одну с
+            числом равным их сумме. Например, при сдвиге двух плиток с числом 2, образуется одна с
+            числом 4 и так далее. Ни в коем случае нельзя двигать плитки без какой-либо цели, это не
+            приведет вас к победе, а только засорит игровое поле. И если на нем закончатся свободные
+            ячейки, а у вас не будет возможности сложить уже имеющиеся плитки, вы проиграли. Есть
+            много тактик и стратегий прохождения игры, используйте их или придумайте свою
+            собственную, сделайте все возможное, чтобы победить. Удачи!</para>
+    </sect1>
+    <sect1>
+        <title>Лицензия </title>
+        <para><emphasis role="bold">GNU General Public License</emphasis> — лицензия на свободное
+            программное обеспечение</para>
+    </sect1>
+    <sect1>
+        <title>Пример кода</title>
+        <para><emphasis role="bold">Создаём поле игры</emphasis>. Используем следующие аргументы: </para>
+        <para><emphasis role="bold">size</emphasis> - размер поля</para>
+        <para><emphasis role="bold">InputManager</emphasis> - клавиатура</para>
+        <para><emphasis role="bold">Actuator</emphasis> - обновление экрана</para>
+        <para><emphasis role="bold">StorageManager</emphasis> - хранилище данных</para>
+        <para/>
+        <para>function GameManager(size, InputManager, Actuator, StorageManager) {</para>
+        <para> this.size = size; </para>
+        <para> this.inputManager = new InputManager;</para>
+        <para> this.storageManager = new StorageManager;</para>
+        <para> this.actuator = new Actuator;</para>
+        <para> this.startTiles = 2;</para>
+        <para> this.inputManager.on("move", this.move.bind(this));</para>
+        <para> this.inputManager.on("restart", this.restart.bind(this));</para>
+        <para> this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));</para>
+        <para> this.setup();</para>
+        <para>}</para>
+    </sect1>
+</article>
