@@ -54,7 +54,13 @@
   };
 
   window.DOMTokenList = DOMTokenList;
-
+/**
+* Вспомогательная функция для геттера элемента
+*
+* @param obj $obj obj
+* @param prop $prop Свойство
+* @param getter $getter Геттер
+*/
   function defineElementGetter(obj, prop, getter) {
     if (Object.defineProperty) {
       Object.defineProperty(obj, prop, {

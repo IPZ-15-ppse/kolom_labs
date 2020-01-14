@@ -21,6 +21,8 @@ Tile.prototype.savePosition = function () {
 };
 /**
 * Обновление позиции
+*
+* @param string $position Позиция
 */
 Tile.prototype.updatePosition = function (position) {
   this.x = position.x;

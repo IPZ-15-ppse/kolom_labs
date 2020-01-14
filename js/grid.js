@@ -48,8 +48,10 @@ Grid.prototype.fromState = function (state) {
 
   return cells;
 };
-
-// Find the first available random position
+/**
+* Find the first available random position
+*
+*/
 Grid.prototype.randomAvailableCell = function () {
   var cells = this.availableCells();
 
@@ -57,7 +59,10 @@ Grid.prototype.randomAvailableCell = function () {
     return cells[Math.floor(Math.random() * cells.length)];
   }
 };
-
+/**
+* Find the available position
+*
+*/
 Grid.prototype.availableCells = function () {
   var cells = [];
 
@@ -69,8 +74,11 @@ Grid.prototype.availableCells = function () {
 
   return cells;
 };
-
-// Call callback for every cell
+/**
+* Call callback for every cell
+*
+* @param callback $callback callback
+*/
 Grid.prototype.eachCell = function (callback) {
   for (var x = 0; x < this.size; x++) {
     for (var y = 0; y < this.size; y++) {
@@ -78,21 +86,35 @@ Grid.prototype.eachCell = function (callback) {
     }
   }
 };
-
-// Check if there are any cells available
+/**
+* Check if there are any cells available
+*
+*/
 Grid.prototype.cellsAvailable = function () {
   return !!this.availableCells().length;
 };
 
-// Check if the specified cell is taken
+/**
+* Check if the specified cell is taken
+*
+* @param cell $cell cell
+*/
 Grid.prototype.cellAvailable = function (cell) {
   return !this.cellOccupied(cell);
 };
-
+/**
+* Check if the specified cell is occupied
+*
+* @param cell $cell cell
+*/
 Grid.prototype.cellOccupied = function (cell) {
   return !!this.cellContent(cell);
 };
-
+/**
+* Check specified cell content
+*
+* @param cell $cell cell
+*/
 Grid.prototype.cellContent = function (cell) {
   if (this.withinBounds(cell)) {
     return this.cells[cell.x][cell.y];
@@ -101,20 +123,35 @@ Grid.prototype.cellContent = function (cell) {
   }
 };
 
-// Inserts a tile at its position
+/**
+* Вставка тайла в его позицию
+*
+* @param string $tile тайл
+*/
 Grid.prototype.insertTile = function (tile) {
   this.cells[tile.x][tile.y] = tile;
 };
-
+/**
+* Удаление тайла
+*
+* @param string $tile тайл
+*/
 Grid.prototype.removeTile = function (tile) {
   this.cells[tile.x][tile.y] = null;
 };
-
+/**
+* Проверка в рамках ли
+*
+* @param string $position позиция
+*/
 Grid.prototype.withinBounds = function (position) {
   return position.x >= 0 && position.x < this.size &&
          position.y >= 0 && position.y < this.size;
 };
 
+/**
+* serialize
+*/
 Grid.prototype.serialize = function () {
   var cellState = [];
 

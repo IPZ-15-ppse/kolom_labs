@@ -53,13 +53,21 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 HTMLActuator.prototype.continueGame = function () {
   this.clearMessage();
 };
-
+/**
+* Очистка контейнреа
+*
+* @param container $container container
+*/
 HTMLActuator.prototype.clearContainer = function (container) {
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }
 };
-
+/**
+* Добавление тайла
+*
+* @param tile $tile tile
+*/
 HTMLActuator.prototype.addTile = function (tile) {
   var self = this;
 
@@ -103,20 +111,37 @@ HTMLActuator.prototype.addTile = function (tile) {
   // Put the tile on the board
   this.tileContainer.appendChild(wrapper);
 };
-
+/**
+* Примненеие классов к элементу
+*
+* @param element $element element
+* @param classes $classes classes
+*/
 HTMLActuator.prototype.applyClasses = function (element, classes) {
   element.setAttribute("class", classes.join(" "));
 };
-
+/**
+* Нормализовать позицию
+*
+* @param position $position position
+*/
 HTMLActuator.prototype.normalizePosition = function (position) {
   return { x: position.x + 1, y: position.y + 1 };
 };
-
+/**
+* Применить класс к позиции
+*
+* @param position $position position
+*/
 HTMLActuator.prototype.positionClass = function (position) {
   position = this.normalizePosition(position);
   return "tile-position-" + position.x + "-" + position.y;
 };
-
+/**
+* Обновить счет
+*
+* @param int $score score
+*/
 HTMLActuator.prototype.updateScore = function (score) {
   this.clearContainer(this.scoreContainer);
 
@@ -133,11 +158,19 @@ HTMLActuator.prototype.updateScore = function (score) {
     this.scoreContainer.appendChild(addition);
   }
 };
-
+/**
+* Обновить лучший счет
+*
+* @param int $score bestScore
+*/
 HTMLActuator.prototype.updateBestScore = function (bestScore) {
   this.bestContainer.textContent = bestScore;
 };
-
+/**
+* Выиграли?
+*
+* @param string $won bestScore
+*/
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!";
@@ -145,7 +178,10 @@ HTMLActuator.prototype.message = function (won) {
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
 };
-
+/**
+* Очистка сообщения
+*
+*/
 HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
   this.messageContainer.classList.remove("game-won");

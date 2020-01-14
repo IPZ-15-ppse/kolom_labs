@@ -17,14 +17,24 @@ function KeyboardInputManager() {
 
   this.listen();
 }
-
+/**
+* Пушим событие
+*
+* @param event $event event
+* @param callback $callback callback
+*/
 KeyboardInputManager.prototype.on = function (event, callback) {
   if (!this.events[event]) {
     this.events[event] = [];
   }
   this.events[event].push(callback);
 };
-
+/**
+* Обновляем данные после события
+*
+* @param event $event event
+* @param data $data data
+*/
 KeyboardInputManager.prototype.emit = function (event, data) {
   var callbacks = this.events[event];
   if (callbacks) {
@@ -136,7 +146,8 @@ KeyboardInputManager.prototype.listen = function () {
 /**
 * Работа с кнопками
 *
-* Перезапуск 
+* Перезапуск
+* @param event $event event
 */
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
@@ -145,7 +156,8 @@ KeyboardInputManager.prototype.restart = function (event) {
 /**
 * Работа с кнопками
 *
-* Продолжение игры 
+* Продолжение игры
+* @param event $event event
 */
 KeyboardInputManager.prototype.keepPlaying = function (event) {
   event.preventDefault();
@@ -155,6 +167,7 @@ KeyboardInputManager.prototype.keepPlaying = function (event) {
 * Работа с кнопками
 *
 * Биндинг кнопок 
+* @param event $event event
 */
 KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
   var button = document.querySelector(selector);
